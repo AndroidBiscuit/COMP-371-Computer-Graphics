@@ -11,14 +11,18 @@ class Point {
         Point(double x, double y, double z);
 
         // Getters
-        double getX() const;
-        double getY() const;
-        double getZ() const;
+        double getX();
+        double getY();
+        double getZ();
 
         // Setters
-        double setX(double x);
-        double setY(double y);
-        double setZ(double z);
+        void setX(double x);
+        void setY(double y);
+        void setZ(double z);
+
+        // Other functions
+        int translate(int d, char axis);
+        double distanceFromPoint(Point& nextPoint);
 };
 
 #endif // POINT_H

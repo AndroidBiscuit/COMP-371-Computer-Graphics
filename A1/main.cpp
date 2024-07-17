@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "Point.h"
+
 using namespace std;
 
 // Dinamically allocate an array of a specified size
@@ -43,7 +45,7 @@ void printArray(int* arrayPointer, int size) {
 }
 
 // Delete array (and pointer)
-static void deleteArray(int* arrayPointer) {
+void deleteArray(int* arrayPointer) {
     cout << endl << "Deleting array... " << endl;
     // Delete memory allocated to array
     delete[] arrayPointer;
@@ -56,7 +58,7 @@ static void deleteArray(int* arrayPointer) {
 }
 
 // Function for running only the first part of the assignment (driver for part one)
-static void partOne() {
+void partOne() {
     cout << "\n-----------   Part 1 - Array manipulation   -----------\n" << endl;
 
     // Get user input for array size
@@ -77,6 +79,8 @@ static void partOne() {
     deleteArray(array);
 }
 
+void partTwo() {}
+
 int main(){
     int userInput = 0;
     cout << "-------------------------------------------------------------" << endl;
@@ -94,7 +98,7 @@ int main(){
         partOne();
     }
     else if (userInput == 2) {
-        cout << "\nWorking on it!\n" << endl;
+        partTwo();
     }
     else {
         cout << "\nWrong input! Please select the right input next time.\n" << endl;
