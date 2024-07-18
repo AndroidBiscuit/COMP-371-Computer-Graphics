@@ -1,0 +1,139 @@
+-------------------------------------------------------------
+-- COMP 371 - Computer Graphics                            --
+-- Assignment 1                                            --
+-------------------------------------------------------------
+Choose which part to demo:
+
+1) Part 1: Array manipulation
+2) Part 2: Point Class
+
+Your choice:1
+
+-----------      Part 1 - Array manipulation      -----------
+
+Select array size:4
+
+Creating array of size 4...
+Array created!
+
+Initializing...
+Array initialized!
+
+Array contents: 0, 1, 2, 3
+
+
+Deleting array...
+Deleting pointer...
+Deleted array and pointer!
+-------------------------------------------------------------
+---                    End of program!                    ---
+-------------------------------------------------------------
+
+Process finished with exit code 0
+
+-------------------------------------------------------------
+-- COMP 371 - Computer Graphics                            --
+-- Assignment 1                                            --
+-------------------------------------------------------------
+Choose which part to demo:
+
+1) Part 1: Array manipulation
+2) Part 2: Point Class
+
+Your choice:2
+
+-----------   Part 2 - Point / Triangle classes   -----------
+
+Do you want to run the point class test? (y/n):y
+ Enter points coordinates:
+Enter value for x:1
+ Enter value for y:2
+ Enter value for z:3
+ New Point info:
+Point info:
+ - X: 1
+ - Y: 2
+ - Z: 3
+
+Move point on X by 3:
+Point info:
+ - X: 4
+ - Y: 2
+ - Z: 3
+
+
+
+Move point on Y by 4:
+Point info:
+ - X: 4
+ - Y: 6
+ - Z: 3
+
+
+
+Move point on Z by 5:
+Point info:
+ - X: 4
+ - Y: 6
+ - Z: 8
+
+
+Enter triangle points coordinates
+ - Enter value for point 1 x:2
+  - Enter value for point 1 y:2
+  - Enter value for point 1 z:0
+  - Enter value for point 2 x:1
+
+ - Enter value for point 2 y:0
+  - Enter value for point 2 z:2
+  - Enter value for point 3 x:0
+  - Enter value for point 3 y:4
+  - Enter value for point 3 z:3
+
+Creating a triangle using these points:
+ - Point A: 2, 2, 0
+ - Point B: 1, 0, 2
+ - Point C: 0, 4, 3
+
+Area of the triangle: 5.85235
+
+
+Do you want to check the translation function? (y/n):y
+ Select axis (x, y, z):x
+
+Enter distance:3
+
+Moving triangle on x by 3:
+ - Point A: 5, 2, 0
+ - Point B: 4, 0, 2
+ - Point C: 3, 4, 3
+
+
+Do you want to check the translation function? (y/n):y
+ Select axis (x, y, z):y
+
+Enter distance:4
+
+Moving triangle on y by 4:
+ - Point A: 5, 6, 0
+ - Point B: 4, 4, 2
+ - Point C: 3, 8, 3
+
+
+Do you want to check the translation function? (y/n):y
+ Select axis (x, y, z):z
+
+Enter distance:5
+
+Moving triangle on z by 5:
+ - Point A: 5, 6, 5
+ - Point B: 4, 4, 7
+ - Point C: 3, 8, 8
+
+
+Do you want to check the translation function? (y/n):n
+ -------------------------------------------------------------
+---                    End of program!                    ---
+-------------------------------------------------------------
+
+Process finished with exit code 0

@@ -1,9 +1,10 @@
+// COMP 371 - Summer 2024
+// Assignment 1
+// Faizan Ahmad (40100581)
+
 #include "Point.h"
 #include <cmath>
 #include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
-#include "Point.h"
 
 using namespace std;
 
@@ -42,23 +43,23 @@ void Point::setZ(int z) {
 // Other functions
 int Point::translate(int d, char axis) {
     // Check distance value
-    // This is already done by specifying "int" in front of the "d" variable 
+    // This is already done by specifying "int" in front of the "d" variable
     // in this function's parameters
 
     // Check axis value and apply distance value
     switch (axis) {
         case 'x':
             x += d;
-            return 0;
-            break;
+        return 0;
+        break;
         case 'y':
             y += d;
-            return 0;
-            break;
+        return 0;
+        break;
         case 'z':
             z += d;
-            return 0;
-            break;
+        return 0;
+        break;
         default:
             return -1;
     }

@@ -79,11 +79,8 @@ void partOne() {
     deleteArray(array);
 }
 
-// Function for running only the second part of the assignment (driver for part two)
-void partTwo() {
-    cout << "\n-----------   Part 2 - Point / Triangle classes   -----------\n" << endl;
-
-    // 2.1 - Create and print a point
+void testPointClass() {
+    // Get point info
     int userX, userY, userZ;
     cout << "Enter points coordinates: " << endl;
     cout << "Enter value for x: ";
@@ -93,11 +90,12 @@ void partTwo() {
     cout << "Enter value for z: ";
     cin >> userZ;
 
-    cout << "New Point info: " << endl;
+    // Make pointer
     Point* tempPoint = new Point(userX, userY, userZ);
+    cout << "New Point info: " << endl;
     tempPoint->pointInfo();
 
-    // 2.2 - Move the point in all three axes
+    // Move the point in all three axes
     cout << endl << "Move point on X by 3:" << endl;
     tempPoint->translate(3, 'x');
     tempPoint->pointInfo();
@@ -111,33 +109,95 @@ void partTwo() {
     tempPoint->pointInfo();
     cout << endl << endl;
 
-    // 2.3 - Create and print a triangle
-    Point* v1 = new Point(2, 2, 0);
-    Point* v2 = new Point(1, 0, 2);
-    Point* v3 = new Point(0, 4, 3);
+    // Delete pointers
+    delete tempPoint;
+    tempPoint = nullptr;
+}
+
+// Function for running only the second part of the assignment (driver for part two)
+void partTwo() {
+    cout << "\n-----------   Part 2 - Point / Triangle classes   -----------\n" << endl;
+
+    // 2.0 Point class test
+    char pointTest;
+    cout << "Do you want to run the point class test? (y/n): ";
+    cin >> pointTest;
+    if (pointTest == 'y') {
+        testPointClass();
+    }
+
+    // 2.1 - Create and print a triangle
+    int point1X, point1Y, point1Z, point2X, point2Y, point2Z, point3X, point3Y, point3Z;
+    cout << "Enter triangle points coordinates " << endl;
+    cout << " - Enter value for point 1 x: ";
+    cin >> point1X;
+    cout << " - Enter value for point 1 y: ";
+    cin >> point1Y;
+    cout << " - Enter value for point 1 z: ";
+    cin >> point1Z;
+    cout << " - Enter value for point 2 x: ";
+    cin >> point2X;
+    cout << " - Enter value for point 2 y: ";
+    cin >> point2Y;
+    cout << " - Enter value for point 2 z: ";
+    cin >> point2Z;
+    cout << " - Enter value for point 3 x: ";
+    cin >> point3X;
+    cout << " - Enter value for point 3 y: ";
+    cin >> point3Y;
+    cout << " - Enter value for point 3 z: ";
+    cin >> point3Z;
+
+    Point* v1 = new Point(point1X, point1Y, point1Z);
+    Point* v2 = new Point(point2X, point2Y, point2Z);
+    Point* v3 = new Point(point3X, point3Y, point3Z);
+
     Triangle* tempTriangle = new Triangle(v1, v2, v3);
     cout << endl << "Creating a triangle using these points:" << endl;
     tempTriangle->showCoordinates();
-    cout << endl << endl;
+    cout << endl;
 
-    // 2.4 - Show area of triangle
+
+    // 2.2 - Show area of triangle
     // Note that there are no units here!
-    cout << "Area of the triangle: " << tempTriangle->findArea() << endl;
+    cout << "Area of the triangle: " << tempTriangle->calcArea() << endl;
     cout << endl << endl;
 
-    // 2.5 - Move the triangle in all three axes
-    cout << endl << "Move triangle on X by 3:" << endl;
-    tempTriangle->translate(3, 'x');
-    tempTriangle->showCoordinates();
-    cout << endl << endl;
-    cout << endl << "Move triangle on Y by 4:" << endl;
-    tempTriangle->translate(4, 'y');
-    tempTriangle->showCoordinates();
-    cout << endl << endl;
-    cout << endl << "Move triangle on Z by 5:" << endl;
-    tempTriangle->translate(5, 'z');
-    tempTriangle->showCoordinates();
-    cout << endl << endl;
+
+    // 2.3 - Move the triangle in all three axes
+    bool axisCheck = true;
+    char userChoice, axis;
+    int distance;
+    while (axisCheck) {
+        cout << "Do you want to check the translation function? (y/n): ";
+        cin >> userChoice;
+        if (userChoice == 'y') {
+            cout << "Select axis (x, y, z): ";
+            cin >> axis;
+            if (axis != 'x' && axis != 'y' && axis != 'z') {
+                cout << endl << "Error - Wrong axis input!" << endl;
+                return;
+            }
+            cout << endl << "Enter distance: ";
+            cin >> distance;
+            if (cin.fail()) {
+                cout << endl << "Error - Wrong distance input!" << endl;
+                return;
+            }
+
+            cout << endl << "Moving triangle on " << axis << " by " << distance << ":" << endl;
+            tempTriangle->translate(distance, axis);
+            tempTriangle->showCoordinates();
+            cout << endl << endl;
+        }
+        else {
+            axisCheck = false;
+        }
+    }
+
+    // 2.4 - Delete pointers
+    delete tempTriangle;
+    tempTriangle = nullptr;
 }
 
 int main(){
