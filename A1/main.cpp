@@ -5,9 +5,9 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 #include "Point.h"
+#include "Triangle.h"
 
 using namespace std;
 
@@ -59,7 +59,7 @@ void deleteArray(int* arrayPointer) {
 
 // Function for running only the first part of the assignment (driver for part one)
 void partOne() {
-    cout << "\n-----------   Part 1 - Array manipulation   -----------\n" << endl;
+    cout << "\n-----------      Part 1 - Array manipulation      -----------\n" << endl;
 
     // Get user input for array size
     int userSize;
@@ -79,7 +79,23 @@ void partOne() {
     deleteArray(array);
 }
 
-void partTwo() {}
+void partTwo() {
+    cout << "\n-----------   Part 2 - Point / Triangle classes   -----------\n" << endl;
+
+    // 2.1 - Create and print a point
+    int userX, userY, userZ;
+    cout << "Enter points coordinates: " << endl;
+    cout << "Enter value for x: ";
+    cin >> userX;
+    cout << "Enter value for y: ";
+    cin >> userY;
+    cout << "Enter value for z: ";
+    cin >> userZ;
+
+    cout << "New Point info: " << endl;
+    Point tempPoint = Point(userX, userY, userZ);
+    tempPoint.pointInfo();
+}
 
 int main(){
     int userInput = 0;

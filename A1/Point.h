@@ -8,21 +8,22 @@ class Point {
     public:
         // Constructors for the pointer class
         Point();
-        Point(double x, double y, double z);
+        Point(int x, int y, int z);
 
         // Getters
-        double getX();
-        double getY();
-        double getZ();
+        int getX();
+        int getY();
+        int getZ();
 
         // Setters
-        void setX(double x);
-        void setY(double y);
-        void setZ(double z);
+        void setX(int x);
+        void setY(int y);
+        void setZ(int z);
 
         // Other functions
         int translate(int d, char axis);
         double distanceFromPoint(Point& nextPoint);
+        void pointInfo();
 };
 
 #endif // POINT_H

@@ -1,35 +1,41 @@
 #include "Point.h"
 #include <cmath>
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include "Point.h"
+
+using namespace std;
 
 // Default constructor
 Point::Point() : x(0), y(0), z(0) {}
 
 // Parameterized constructor
-Point::Point(double x, double y, double z): x(x), y(y), z(z) {}
+Point::Point(int x, int y, int z): x(x), y(y), z(z) {}
 
 // Getters
-double Point::getX() {
+int Point::getX() {
     return x;
 }
 
-double Point::getY() {
+int Point::getY() {
     return y;
 }
 
-double Point::getZ() {
+int Point::getZ() {
     return z;
 }
 
 // Setters
-void Point::setX(double x) {
+void Point::setX(int x) {
     this->x = x;
 }
 
-void Point::setY(double y) {
+void Point::setY(int y) {
     this->y = y;
 }
 
-void Point::setZ(double z) {
+void Point::setZ(int z) {
     this->z = z;
 }
 
@@ -58,6 +64,14 @@ int Point::translate(int d, char axis) {
     }
 }
 
+// Find distance between the current point and a chosen point
 double Point::distanceFromPoint(Point& nextPoint){
     return sqrt(pow(x - nextPoint.x, 2) + pow(y - nextPoint.y, 2) + pow(z - nextPoint.z, 2));
+}
+
+void Point::pointInfo() {
+    cout << "Point info: " << endl;
+    cout << " - X: " << x << endl;
+    cout << " - Y: " << y << endl;
+    cout << " - Z: " << z << endl;
 }
