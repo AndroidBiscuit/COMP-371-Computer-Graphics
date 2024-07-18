@@ -79,6 +79,7 @@ void partOne() {
     deleteArray(array);
 }
 
+// Function for running only the second part of the assignment (driver for part two)
 void partTwo() {
     cout << "\n-----------   Part 2 - Point / Triangle classes   -----------\n" << endl;
 
@@ -93,8 +94,50 @@ void partTwo() {
     cin >> userZ;
 
     cout << "New Point info: " << endl;
-    Point tempPoint = Point(userX, userY, userZ);
-    tempPoint.pointInfo();
+    Point* tempPoint = new Point(userX, userY, userZ);
+    tempPoint->pointInfo();
+
+    // 2.2 - Move the point in all three axes
+    cout << endl << "Move point on X by 3:" << endl;
+    tempPoint->translate(3, 'x');
+    tempPoint->pointInfo();
+    cout << endl << endl;
+    cout << endl << "Move point on Y by 4:" << endl;
+    tempPoint->translate(4, 'y');
+    tempPoint->pointInfo();
+    cout << endl << endl;
+    cout << endl << "Move point on Z by 5:" << endl;
+    tempPoint->translate(5, 'z');
+    tempPoint->pointInfo();
+    cout << endl << endl;
+
+    // 2.3 - Create and print a triangle
+    Point* v1 = new Point(2, 2, 0);
+    Point* v2 = new Point(1, 0, 2);
+    Point* v3 = new Point(0, 4, 3);
+    Triangle* tempTriangle = new Triangle(v1, v2, v3);
+    cout << endl << "Creating a triangle using these points:" << endl;
+    tempTriangle->showCoordinates();
+    cout << endl << endl;
+
+    // 2.4 - Show area of triangle
+    // Note that there are no units here!
+    cout << "Area of the triangle: " << tempTriangle->findArea() << endl;
+    cout << endl << endl;
+
+    // 2.5 - Move the triangle in all three axes
+    cout << endl << "Move triangle on X by 3:" << endl;
+    tempTriangle->translate(3, 'x');
+    tempTriangle->showCoordinates();
+    cout << endl << endl;
+    cout << endl << "Move triangle on Y by 4:" << endl;
+    tempTriangle->translate(4, 'y');
+    tempTriangle->showCoordinates();
+    cout << endl << endl;
+    cout << endl << "Move triangle on Z by 5:" << endl;
+    tempTriangle->translate(5, 'z');
+    tempTriangle->showCoordinates();
+    cout << endl << endl;
 }
 
 int main(){
