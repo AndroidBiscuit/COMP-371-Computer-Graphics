@@ -22,7 +22,7 @@
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{c32afff3-41bf-4de5-9954-58269224c3a6}</ProjectGuid>
-    <RootNamespace>OpenGLTest</RootNamespace>
+    <RootNamespace>OpenGLIntro</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>OpenGLIntro</ProjectName>
   </PropertyGroup>
