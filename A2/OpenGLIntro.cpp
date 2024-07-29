@@ -144,7 +144,7 @@ int main()
         glm::mat4 transform = glm::mat4(1.0f);
         transform = glm::translate(transform, translation);
         transform = glm::rotate(transform, rotation, glm::vec3(0.0f, 0.0f, 1.0f));
-        transform = glm::scale(transform, glm::vec3(scale, scale, scale));
+        transform = glm::scale(transform, glm::vec3(1.0f, 1.0f, scale));
         unsigned int transformLoc = glGetUniformLocation(shaderProgram, "transform");
         glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
 
