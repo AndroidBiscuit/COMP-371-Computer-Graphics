@@ -57,10 +57,10 @@ const float d = 0.001f;
 // Scale factor
 const float s = 1.001f; 
 
-// Time tracking for debouncing key presses
+// Initialize variables for Time gap
 double lastTimeQ = 0.0;
 double lastTimeE = 0.0;
-const double debounceTime = 0.2; // 200 ms debounce time
+const double gapTime = 0.2; 
 
 // 4-1. Modify processInput function to handle keyboard inputs.
 // 4-2. Apply the Transformations based on Input
@@ -84,16 +84,16 @@ void processInput(GLFWwindow* window)
 
     // Rotation
     // Time gap to make sure it pressed once
-    if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS && currentTime - lastTimeQ > debounceTime) {
+    if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS && currentTime - lastTimeQ > gapTime) {
         rotation += glm::radians(30.0f);
         lastTimeQ = currentTime;
     }
-    if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS && currentTime - lastTimeE > debounceTime) {
+    if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS && currentTime - lastTimeE > gapTime) {
         rotation -= glm::radians(30.0f);
         lastTimeE = currentTime;
     }
 
-    // Scaling
+    // Scale
     if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS)
         scale *= s;
     if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
@@ -103,9 +103,8 @@ void processInput(GLFWwindow* window)
 int main()
 {
     glfwInit();
-    GLFWwindow* window = glfwCreateWindow(800, 600, "Triangle", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(800, 800, "Triangle", NULL, NULL);
     glfwMakeContextCurrent(window);
-
     glewInit();
 
     unsigned int shaderProgram = createShaderProgram(vertexShaderSource, fragmentShaderSource);
@@ -125,8 +124,10 @@ int main()
 
     // Bind the Vertex Array Object for the triangle
     glBindVertexArray(VAO[0]);
+    // Bind and set vertex data in VBO
     glBindBuffer(GL_ARRAY_BUFFER, VBO[0]);
     glBufferData(GL_ARRAY_BUFFER, sizeof(verticesTriangle), verticesTriangle, GL_STATIC_DRAW);
+    // Define vertex attribute pointers and enable
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
@@ -141,10 +142,18 @@ int main()
         glUseProgram(shaderProgram);
         // 3-1. Create Transformation Matrices:
         // 3-3. Apply Transformations
-        glm::mat4 transform = glm::mat4(1.0f);
-        transform = glm::translate(transform, translation);
-        transform = glm::rotate(transform, rotation, glm::vec3(0.0f, 0.0f, 1.0f));
-        transform = glm::scale(transform, glm::vec3(1.0f, 1.0f, scale));
+        // Create Perspective Projection Matrix
+        glm::mat4 projection = glm::perspective(45.0f, 1.0f, 0.1f, 100.0f);
+        glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -3.0f)); 
+        glm::mat4 object = glm::mat4(1.0f);
+
+        // Apply Transformations
+        object = glm::translate(object, translation);
+        object = glm::rotate(object, rotation, glm::vec3(0.0f, 0.0f, 1.0f));
+        object = glm::scale(object, glm::vec3(scale, scale, scale));
+
+        glm::mat4 transform = projection * view * object;
+
         unsigned int transformLoc = glGetUniformLocation(shaderProgram, "transform");
         glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
 
