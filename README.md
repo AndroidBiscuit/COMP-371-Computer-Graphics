@@ -6,6 +6,8 @@ There will be X programming assignments. These assignments are designed to give 
 
 # Members
 - Faizan Ahmad (40100581); GH: AndroidBiscuit
+- Jihan Moon (40170485); GH: Xeccq  
+- Kara Ignatenko (40324923); GH: karaign
 
 # Course description
 This course covers the following topics: 
