@@ -51,11 +51,12 @@ unsigned int createShaderProgram(const char* vertexSource, const char* fragmentS
 // Initialize variables for Translation
 glm::vec3 translation(0.0f, 0.0f, 0.0f);
 float rotation = 0.0f;
-float scale = 1.0f;
 // Translation distance
 const float d = 0.001f; 
 // Scale factor
-const float s = 1.001f; 
+float scale = -3.0f;
+const float s = 0.001f; 
+// 
 
 // Initialize variables for Time gap
 double lastTimeQ = 0.0;
@@ -93,11 +94,11 @@ void processInput(GLFWwindow* window)
         lastTimeE = currentTime;
     }
 
-    // Scale
+    // Scale (Translation of z-axis)
     if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS)
-        scale *= s;
+        scale += s;
     if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
-        scale /= s;
+        scale -= s;
 }
 
 int main()
@@ -116,16 +117,15 @@ int main()
          0.0f,  0.5f, 0.0f
     };
 
-    // 2-4. Set Up the VAO, VBO, and EBO
-    unsigned int VBO[2], VAO[2], EBO;
-    glGenVertexArrays(2, VAO);
-    glGenBuffers(2, VBO);
-    glGenBuffers(1, &EBO);
+    // 2-4. Set Up the VAO and VBO
+    unsigned int VBO, VAO;
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &VBO);
 
     // Bind the Vertex Array Object for the triangle
-    glBindVertexArray(VAO[0]);
+    glBindVertexArray(VAO);
     // Bind and set vertex data in VBO
-    glBindBuffer(GL_ARRAY_BUFFER, VBO[0]);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(verticesTriangle), verticesTriangle, GL_STATIC_DRAW);
     // Define vertex attribute pointers and enable
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
@@ -144,13 +144,12 @@ int main()
         // 3-3. Apply Transformations
         // Create Perspective Projection Matrix
         glm::mat4 projection = glm::perspective(45.0f, 1.0f, 0.1f, 100.0f);
-        glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -3.0f)); 
+        glm::mat4 view = glm::mat4(1.0f);
         glm::mat4 object = glm::mat4(1.0f);
 
         // Apply Transformations
-        object = glm::translate(object, translation);
+        object = glm::translate(object, glm::vec3(translation.x, translation.y, scale));
         object = glm::rotate(object, rotation, glm::vec3(0.0f, 0.0f, 1.0f));
-        object = glm::scale(object, glm::vec3(scale, scale, scale));
 
         glm::mat4 transform = projection * view * object;
 
@@ -162,7 +161,7 @@ int main()
         glUniform3f(colorLoc, 1.0f, 0.0f, 0.0f);
 
         // Draw triangle
-        glBindVertexArray(VAO[0]);
+        glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 3);
 
         glfwSwapBuffers(window);
@@ -170,9 +169,8 @@ int main()
     }
 
     // Clean up
-    glDeleteVertexArrays(2, VAO);
-    glDeleteBuffers(2, VBO);
-    glDeleteBuffers(1, &EBO);
+    glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &VBO);
     glDeleteProgram(shaderProgram);
 
     glfwTerminate();
